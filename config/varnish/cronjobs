@@ -6,6 +6,7 @@
 0	3	*	*	6	run-parts /etc/periodic/weekly
 0	5	1	*	*	run-parts /etc/periodic/monthly
 
+# all those commands are called at some points by the dd-agent
 *	*	*	*	*	varnishadm -S /etc/varnish/secrets backend.list -p > /varnishout/varnishadm
 *	*	*	*	*	varnishstat -V > /varnishout/varnishstatv 2>&1
 *	*	*	*	*	varnishstat -x > /varnishout/varnishstatx

@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
+# the fake varnishadm command
+
 cat /varnishout/varnishadm

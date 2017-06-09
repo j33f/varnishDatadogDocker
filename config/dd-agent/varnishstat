@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+#the fake varnishstat command
+
 case $1 in
     "-V") cat /varnishout/varnishstatv; exit;;
     "-1") cat /varnishout/varnishstat; exit;;
