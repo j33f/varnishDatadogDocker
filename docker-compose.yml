@@ -1,0 +1,29 @@
+version: "2"
+services:
+  varnish:
+    image: cloudposse/varnish
+    container_name: varnish
+    restart: always
+    entrypoint: sh -c "chmod 755 /custominit.sh && /custominit.sh"
+    volumes:
+      - ../logs/varnishstat:/varnishout
+      - ../config/varnish/custominit.sh:/custominit.sh
+      - ../config/varnish/cronjobs:/cronjobs
+      - ../config/varnish/sites.vcl:/etc/varnish/configs/default.vcl
+
+  ddagent:
+    image: datadog/docker-dd-agent:latest
+    container_name: dd-agent
+    privileged: true
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+      - ../logs/varnishstat:/varnishout
+      - ../config/dd-agent/varnishstat:/usr/bin/varnishstat
+      - ../config/dd-agent/varnishadm:/usr/bin/varnishadm
+      - ../config/dd-agent/varnish.yaml:/etc/dd-agent/conf.d/varnish.yaml
+    environment:
+      - API_KEY=APIKEY
+      - SD_BACKEND=docker

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+case $1 in
+    "-V") cat /varnishout/varnishstatv; exit;;
+    "-1") cat /varnishout/varnishstat; exit;;
+    "-x") cat /varnishout/varnishstatx; exit;;
+esac
