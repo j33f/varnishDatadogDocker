@@ -14,3 +14,7 @@ Each minutes, some cron jobs will launch the varnish commands called by dd-agent
 Since those files are mounted as volume into both varnish and dd-agent containers (look at the docker-compose.yml file) dd-agent will see the data in them when calling the fake varnish commands.
 
 This way, we can get some metrics for varnish, per minutes, yes, but we don't really need much super-precise-real-time data for it.
+
+## License
+
+Apache 2.0
